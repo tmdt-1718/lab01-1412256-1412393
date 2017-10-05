@@ -4,5 +4,4 @@ RUN mkdir /myblog
 WORKDIR /myblog
 ADD Gemfile /myblog/Gemfile
 ADD Gemfile.lock /myblog/Gemfile.lock
-RUN bundle install
 ADD . /myblog
