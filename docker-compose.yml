@@ -1,7 +1,5 @@
 version: '3'
 services:
-  db:
-    image: postgres
   web:
     build: .
     command: sh /myblog/scripts/startup.sh
@@ -9,5 +7,17 @@ services:
       - .:/myblog
     ports:
       - "3000:3000"
-    depends_on:
+    container_name: myblog
+    links:
       - db
+      - redis
+    stdin_open: true
+    tty: true
+  db:
+    image: postgres
+    container_name: db
+
+  redis:
+    image: redis
+    container_name: redis
+

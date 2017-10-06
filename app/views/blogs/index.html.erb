@@ -1,0 +1,8 @@
+<%= render partial: 'flash_message', locals: {messages: flash} %>
+
+<h1>Blogs</h1>
+<%= @blogs.count %> blogs
+
+<% @blogs.each do |blog| %>
+	<%= render partial: "thumbnail", locals: {a: blog}%>
+<% end %>	
