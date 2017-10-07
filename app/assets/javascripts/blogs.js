@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+/*$(document).on('turbolinks:load', function() {
     // document attached events can be applied to future tag, which can be loaded after running these statements.
     $(document).on('mouseenter', '[highlight]', function() {
         $(this).addClass("blog-highlight");
@@ -21,4 +21,4 @@ $(document).on('turbolinks:load', function() {
             console.log('errors');
         });
     }
-});
+});*/

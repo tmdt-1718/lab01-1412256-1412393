@@ -6,6 +6,7 @@
 <div class="form-group">
 	<label>Body</label>
 	<textarea name="post[body]" id="post_body" class= 'form-control'> </textarea>
+	<input type='hidden' name="post[user_id]" id="post_user_id" value="<%= session[:current_user_id] %>">
 </div>
 <button type="submit" class="btn btn-primary"><%= fa_icon "save" %> Save </button>
 <% end %>

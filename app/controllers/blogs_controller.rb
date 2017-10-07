@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-
+  before_action :authenticate, only: [:create, :update, :destroy]
   before_action :get_blog, only: [:show,:edit, :update, :destroy]
 
   def index
@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(title: params[:post][:title],  body: params[:post][:body], user_id: 1, view: 0 )
+    @blog = Blog.new(title: params[:post][:title],  body: params[:post][:body], user_id: params[:post][:user_id], view: 0 )
     if @blog.save
       flash[:success] = "Create successfully."
       render :show
@@ -23,25 +23,37 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if @blog.update(blog_params)
-      flash[:success] = "Update successfully."
-      redirect_to blog_path(@blog.id)
+    if (session[:current_user_id]==@blog.user_id)
+      if @blog.update(blog_params)
+        flash[:success] = "Update successfully."
+        redirect_to blog_path(@blog.id)
+      else
+        flash[:error] = "Cannot update."
+        render :show
+      end
     else
-      flash[:error] = "Cannot update."
+      flash[:error] = "You can not update."
       render :show
     end
   end
   
+
   def destroy
-    begin
-      @blog.destroy!
-      flash[:success] = "Delete successfully."
-      redirect_to blogs_path
-    rescue ActiveRecord::RecordNotDestroyed => e
-      flash[:error] = "Cannot delete."
-      render :show
+    if (session[:current_user_id]==@blog.user_id)
+      begin
+        @blog.destroy!
+        flash[:success] = "Delete successfully."
+        redirect_to blogs_path
+      rescue ActiveRecord::RecordNotDestroyed => e
+        flash[:error] = "Cannot delete."
+        render :show
+      end
+    else
+      flash[:error] = "You can not delete."
+      redirect_to blog_path
     end
   end
+  
 
 
   private
