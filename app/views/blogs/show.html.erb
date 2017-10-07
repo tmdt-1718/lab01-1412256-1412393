@@ -21,6 +21,10 @@
 			Edit
 		<% end %>
 
+		<%= link_to blog_path(@blog.id), class: 'btn btn-danger', remote: true, method: :delete do %> 
+			Delete
+		<% end %>
+		
 		<%= link_to blogs_path, class: 'btn btn-secondary' do %>
 		Back
 		<% end %>
