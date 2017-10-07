@@ -1,6 +1,7 @@
 #!/bin/bash
 # Startup scripts
 rm -f /myblog/tmp/pids/server.pid
+bundle update
 bundle install
 rails db:create
 rails db:migrate
