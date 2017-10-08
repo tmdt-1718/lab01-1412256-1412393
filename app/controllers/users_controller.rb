@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+    add_breadcrumb "Home", :home_index_path
     def new
-
+        add_breadcrumb "Register", new_user_path
     end
     
     def create
