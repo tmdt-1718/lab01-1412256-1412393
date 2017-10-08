@@ -1,9 +1,17 @@
 class BlogsController < ApplicationController
   before_action :authenticate, only: [:create, :update, :destroy]
   before_action :get_blog, only: [:show,:edit, :update, :destroy]
+  add_breadcrumb "Home", :home_index_path
+
 
   def index
-    @blogs=Blog.all
+    @blogs=Blog.limit(10)
+    add_breadcrumb "Blogs", blogs_path
+  end
+
+  def new
+    add_breadcrumb "Blogs", blogs_path
+    add_breadcrumb "New", new_blog_path
   end
 
   def create
@@ -15,11 +23,18 @@ class BlogsController < ApplicationController
   end
 
   def show
+    add_breadcrumb "Blogs", blogs_path
+    add_breadcrumb @blog.title, blog_path(@blog.id)
     #@blog.view=1
     #@blog.save
     # @blog = Blog.find(params[:id])
     @blog.update(view: @blog.view+1) 
     @blog.save
+  end
+
+  def edit
+    add_breadcrumb "Blogs", blogs_path
+    add_breadcrumb "Edit", edit_blog_path(@blog.id)
   end
 
   def update

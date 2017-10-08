@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'faker'
+gem "breadcrumbs_on_rails"
 gem "font-awesome-rails"
 gem 'active_model_serializers'
 # Use Capistrano for deployment
