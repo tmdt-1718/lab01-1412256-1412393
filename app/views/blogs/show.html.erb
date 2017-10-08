@@ -30,12 +30,42 @@
 		<% end %>
 	</div>
 </div>
+
 <div class="row">
-<div class="col-md-12">
-	comments
-	<ul id="comments">
-	</ul>
-</div>
+	<div class="col-md-12">
+		<%= form_for :post, url: '/comments' do |f| %>
+			<br></br>
+			<div class="form-group">
+				<label for=""><h4>Post a comment:</h4></label>
+				<textarea name="post[body]" id="post_body" class= 'form-control'> </textarea>
+				<input type='hidden' name="post[user_id]" id="post_user_id" value="<%= session[:current_user_id] %>">
+				<input type='hidden' name="post[blog_id]" id="post_blog_id" value="<%= @blog.id %>">
+			</div>
+
+			<div class="form-group">
+			<button type="submit" class="btn btn-success">Comment</button>
+			</div>
+		<% end %>
+	</div>
 </div>
 
-<input type='hidden' id="blogId" value="<%= @blog.id %>">
+<div class="row">
+	<div class="col-md-9">
+		<h3>Comments:</h1>
+		<ul id="comments" class="list-unstyled">
+			<% @blog.comments.reverse_each do |comment| %>
+				<li>
+					<div class="card">
+						<div class="card-body">
+							<blockquote class="blockquote mb-0">
+							<p class="card-text"><small><%=comment.body%></small></p>
+								<footer class="blockquote-footer"><%=comment.user.name%></footer>
+							</blockquote>
+						</div>
+					</div
+				</li>
+			<% end %>	
+		</ul>
+	</div>
+</div>
+
