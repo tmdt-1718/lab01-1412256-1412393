@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate, only: [:create, :update, :destroy]
   before_action :get_blog, only: [:show,:edit, :update, :destroy]
-  add_breadcrumb "Home", :home_index_path
+  add_breadcrumb "Home", :homepage_path
 
 
   def index

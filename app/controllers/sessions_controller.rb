@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-	add_breadcrumb "Home", :home_index_path
+	add_breadcrumb "Home", :homepage_path
     def new
 		add_breadcrumb "Login", login_path
 	end

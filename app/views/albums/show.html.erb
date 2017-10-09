@@ -1,0 +1,71 @@
+<%= render partial: 'flash_message', locals: {messages: flash} %>
+
+<div class="blog-thumbnail" highlight>
+	<div class="card-body">
+		<h4 class="card-title">
+			<%= link_to blog_path(@blog.id), class: "card-title" do %>
+				<%= @blog.title %>
+			<% end %>
+			</h4>
+		<h6 class="card-subtitle mb-2 text-muted">Author: <%= @blog.user.name %> (views: <%= @blog.view %>)</h6>
+		<p >
+			<%= @blog.body %>	
+			</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= link_to edit_blog_path(@blog.id), class: 'btn btn-primary' do%>
+			<%= fa_icon "pencil" %>
+			Edit
+		<% end %>
+
+		<%= link_to blog_path(@blog.id), class: 'btn btn-danger', remote: true, method: :delete do %> 
+			Delete
+		<% end %>
+		
+		<%= link_to blogs_path, class: 'btn btn-secondary' do %>
+		Back
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for :post, url: '/comments' do |f| %>
+			<br></br>
+			<div class="form-group">
+				<label for=""><h4>Post a comment:</h4></label>
+				<textarea name="post[body]" id="post_body" class= 'form-control'> </textarea>
+				<input type='hidden' name="post[user_id]" id="post_user_id" value="<%= session[:current_user_id] %>">
+				<input type='hidden' name="post[blog_id]" id="post_blog_id" value="<%= @blog.id %>">
+			</div>
+
+			<div class="form-group">
+			<button type="submit" class="btn btn-success">Comment</button>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-9">
+		<h3>Comments:</h1>
+		<ul id="comments" class="list-unstyled">
+			<% @blog.comments.reverse_each do |comment| %>
+				<li>
+					<div class="card">
+						<div class="card-body">
+							<blockquote class="blockquote mb-0">
+							<p class="card-text"><small><%=comment.body%></small></p>
+								<footer class="blockquote-footer"><%=comment.user.name%></footer>
+							</blockquote>
+						</div>
+					</div
+				</li>
+			<% end %>	
+		</ul>
+	</div>
+</div>
+
