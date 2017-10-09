@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    add_breadcrumb "Home", :home_index_path
+    add_breadcrumb "Home", :homepage_path
     def index
         
     end
