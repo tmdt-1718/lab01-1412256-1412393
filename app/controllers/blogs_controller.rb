@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 
 
   def index
-    @blogs=Blog.limit(10)
+    @blogs=Blog.all
     add_breadcrumb "Blogs", blogs_path
   end
 

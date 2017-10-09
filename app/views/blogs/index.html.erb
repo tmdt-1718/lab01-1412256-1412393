@@ -4,6 +4,6 @@
 	Create new blog
 	<% end %>
 
-<% @blogs.each do |blog| %>
+<% @blogs.reverse_each do |blog| %>
 	<%= render partial: "thumbnail", locals: {a: blog}%>
 <% end %>	
