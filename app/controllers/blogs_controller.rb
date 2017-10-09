@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(title: params[:post][:title],  body: params[:post][:body], user_id: params[:post][:user_id], view: 0 )
+    @blog = Blog.new(title: params[:post][:title],  body: params[:post][:body], user_id: params[:post][:user_id], avatar:'https://i.imgur.com/DnBLcJo.jpg', view: 0 )
     if @blog.save
       flash[:success] = "Create successfully."
       render :show
