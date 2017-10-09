@@ -11,4 +11,5 @@ post '/sessions/login', to: 'sessions#create', as: nil
 delete '/sessions/logout', to: 'sessions#destroy', as: :logout
 resources :blogs, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 get '/about',to: 'about#index'
+get 'albums/:id/:photo_id', to: 'albums#showphoto', as: :photo
 end

@@ -1,0 +1,24 @@
+<%= render partial: 'flash_message', locals: {messages: flash} %>
+
+<div class="row">
+		<div class="col-md-9">
+			<h3>Photos:</h1>
+		</div>
+</div>
+<div class="row">
+		<div class="col-md-9 text-center">
+				<div class="card" style="width: 20rem;">
+					<img  src=<%= @photo.link%> class="card-img-top" alt="Card image cap">
+					<div class="card-body">
+						<h4 class="card-title"><%= @photo.name%></h4>
+						<p class="card-text">Author: <%= @photo.album.user.name %> (views: <%= @photo.view %>)</p>
+						<%= link_to album_path(@photo.album.id), class: "btn btn-primary" do %>
+							Back
+						<% end %>
+					</div>
+			  	</div>
+		</div>
+</div>
+
+
+
